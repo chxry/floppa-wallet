@@ -1,0 +1,54 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.ApplicationWindow window {
+    default-width: 1200;
+    default-height: 700;
+    content: Adw.NavigationSplitView {
+        sidebar: Adw.NavigationPage {
+            title: "Floppa Wallet";
+            Adw.ToolbarView {
+                width-request: 350;
+                [top]
+                Adw.HeaderBar {
+                    [title]
+                    Adw.WindowTitle {
+                        title: "Floppa Wallet";
+                        subtitle: "3 Wallets";
+                    }
+                    [start]
+                    MenuButton add_button {
+                        icon-name: "list-add-symbolic";
+                        always-show-arrow: true;
+                        menu-model: add_wallet_menu;
+                    }
+                    [end]
+                    MenuButton {
+                        icon-name: "open-menu-symbolic";
+                        menu-model: app_menu;
+                    }
+                }
+            }
+        };
+        content: Adw.NavigationPage {
+            title: "...";
+            Adw.ToolbarView {
+                [top]
+                Adw.HeaderBar {}
+            }
+        };
+    };
+}
+
+menu add_wallet_menu {
+  section {
+    item ("...")
+  }
+}
+
+menu app_menu {
+  section {
+    item ("Preferences", "win.prefs")
+    item ("About", "win.about")
+  }
+}
